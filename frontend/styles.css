@@ -1,0 +1,106 @@
+/* ----------- RESET ----------- */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    background: #F4F7FB;
+    color: #0A2A5E;
+}
+
+/* ----------- CONTENEDOR ----------- */
+.container {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+/* Avatar */
+#avatar {
+    width: 180px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.2));
+}
+
+/* ----------- CHAT ----------- */
+#chat {
+    width: 100%;
+    height: 450px;
+    background: rgba(10, 42, 94, 0.05);
+    border: 2px solid #0A2A5E;
+    border-radius: 18px;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+}
+
+/* ----------- MENSAJES ----------- */
+.msg {
+    padding: 12px 18px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    max-width: 80%;
+    word-wrap: break-word;
+    font-size: 15px;
+}
+
+/* Usuario */
+.user-msg {
+    background: #1B3C78;
+    color: white;
+    margin-left: auto;
+    text-align: right;
+}
+
+/* Bot */
+.bot-msg {
+    background: #ffffff;
+    border: 1px solid #0A2A5E;
+    color: #0A2A5E;
+    text-align: left;
+    margin-right: auto;
+}
+
+/* Botón reproducir audio */
+.audio-btn {
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #0A2A5E;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.audio-btn:hover {
+    background: #1B3C78;
+}
+
+/* ----------- INPUT ----------- */
+.input-box {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#preg {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #0A2A5E;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+#enviar {
+    padding: 12px 20px;
+    background: #0A2A5E;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#enviar:hover {
+    background: #1B3C78;
+}
