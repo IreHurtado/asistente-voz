@@ -2,20 +2,34 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Asistente IA</title>
+    <title>Asistente Notaría Paul Hurtado</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-
 </head>
 <body>
 
 <div class="container">
 
-    <img id="logo" src="assets/logo.png" style="width:220px; margin-bottom:20px;">
+    <div class="header">
+        <img id="logo" src="assets/logo.png" style="width:220px; margin-bottom:20px;">
+        <div class="top-bar">
+            <button id="toggle-theme" onclick="toggleDarkMode()">🌙</button>
+        </div>
+        <img id="avatar" src="assets/smile.png">
+    </div>
+    
 
-    <img id="avatar" src="assets/smile.png">
 
-    <div id="chat"></div>
+    
+
+    <div id="chat">
+        <div class="welcome-message">
+            <p>Hola 😊</p>
+            <p>Soy el asistente virtual de la Notaría Paul Hurtado.</p>
+            <p>Puedes escribirme tu consulta y con gusto te ayudaré.</p>
+            <p><strong>Por favor sé breve y clar@ para obtener una respuesta más precisa.</strong></p>
+        </div>
+    </div>
 
     <div class="input-box">
         <input id="preg" placeholder="Escribe tu consulta notarial…">

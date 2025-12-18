@@ -7,7 +7,7 @@ def generar_audio(texto: str) -> bytes:
     """Genera audio MP3 en memoria y devuelve bytes."""
     audio = client.audio.speech.create(
         model="gpt-4o-mini-tts",
-        voice="alloy",
+        voice="onyx",
         input=texto
     )
     return audio.read()   

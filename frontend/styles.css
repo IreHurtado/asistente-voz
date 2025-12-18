@@ -1,10 +1,30 @@
 /* ----------- RESET ----------- */
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
 body, html {
     margin: 0;
     padding: 0;
     font-family: 'Inter', 'Roboto', sans-serif;
-    background: #F4F7FB;
+    background: #ecf0f4;
     color: #0A2A5E;
+    min-height: 100vh;
+}
+
+/* ----------- HEADER ----------- */
+.header {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto 8px;
+    text-align: center;
 }
 
 /* ----------- CONTENEDOR ----------- */
@@ -25,7 +45,7 @@ body, html {
 /* ----------- CHAT ----------- */
 #chat {
     width: 100%;
-    height: 450px;
+    height: 250px;
     background: rgba(10, 42, 94, 0.05);
     border: 2px solid #0A2A5E;
     border-radius: 18px;
@@ -103,4 +123,179 @@ body, html {
 
 #enviar:hover {
     background: #1B3C78;
+}
+
+.top-bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#toggle-theme {
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+.bot-msg em {
+    color: #64748b;
+    font-style: italic;
+}
+
+
+.welcome-message {
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #1e293b;
+    margin-bottom: 15px;
+    border-left: 4px solid #024A86;
+}
+.welcome-message p {
+    margin: 4px 0;
+}
+
+.botones {
+    margin-top: 8px;
+}
+
+.action-btn {
+    display: inline-block;
+    margin-right: 8px;
+    margin-top: 6px;
+    padding: 8px 14px;
+    background-color: #1f3c88;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.action-btn:hover {
+    background-color: #16306b;
+}
+
+.stop-btn {
+    background-color: #555;
+}
+
+.stop-btn:hover {
+    background-color: #333;
+}
+
+/* ===============================
+   RESPONSIVE (MÓVIL)
+   =============================== */
+@media (max-width: 600px) {
+
+    .container {
+        margin: 20px auto;
+        padding: 0 12px;
+    }
+
+    #avatar {
+        width: 130px;
+    }
+
+    #chat {
+        height: 55vh; /* ocupa mejor la pantalla */
+        padding: 14px;
+    }
+
+    .msg {
+        max-width: 100%;
+        font-size: 14px;
+    }
+
+    .input-box {
+        flex-direction: column;
+    }
+
+    #enviar {
+        width: 100%;
+    }
+
+    .audio-btn,
+    .action-btn {
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+/* ===============================
+   AVATAR IDLE (RESPIRACIÓN SUAVE)
+   =============================== */
+#avatar {
+    animation: breathing 4s ease-in-out infinite;
+}
+
+@keyframes breathing {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+/* ===============================
+   BOTONES DEL BOT
+   =============================== */
+.bot-msg .botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.bot-msg button,
+.bot-msg a {
+    margin-top: 6px;
+}
+
+/* ===============================
+   MEJOR LEGIBILIDAD CHAT
+   =============================== */
+.bot-msg p {
+    line-height: 1.5;
+}
+
+.user-msg {
+    line-height: 1.4;
+}
+
+/* ===============================
+   MODO OSCURO
+   =============================== */
+body.dark {
+    background: #1d2f54;
+    color: #E5E7EB;
+}
+
+body.dark .container {
+    background: transparent;
+}
+
+body.dark #chat {
+    border: 1px solid #1e3a8a;
+    box-shadow: 0px 8px 30px rgba(0,0,0,0.6);
+}
+
+body.dark .bot-msg {
+    background: #020617;
+    color: #e5e7eb;
+    border-color: #334155;
+}
+
+body.dark .user-msg {
+    background: #1c326f;
+    color: #ffffff;
+}
+
+body.dark .audio-btn,
+body.dark #enviar,
+body.dark .action-btn {
+    background: #1f49a4;
 }

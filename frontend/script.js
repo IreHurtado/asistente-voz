@@ -41,19 +41,84 @@ function addUserMessage(text) {
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight;
 }
+// DETECTA URLs EN EL TEXTO Y LAS CONVIERTE EN BOTONES
+function procesarTextoConLinks(texto) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const urls = texto.match(urlRegex);
+
+    let textoLimpio = texto;
+    let botonesHTML = "";
+
+    if (urls) {
+        urls.forEach(url => {
+            textoLimpio = textoLimpio.replace(url, "").trim();
+
+            let label = "Abrir enlace";
+            if (url.includes("whatsapp")) label = "📲 Contactar por WhatsApp";
+            if (url.includes("maps")) label = "📍 Ver ubicación";
+            if (url.includes("notariapaulhurtado")) label = "📄 Ver requisitos";
+
+            botonesHTML += `
+                <a href="${url}" target="_blank" class="action-btn">
+                    ${label}
+                </a>
+            `;
+        });
+    }
+
+    return {
+        texto: textoLimpio,
+        botones: botonesHTML
+    };
+}
+
+// Función para pensar
+let thinkingDiv = null;
+
+function showThinking() {
+    thinkingDiv = document.createElement("div");
+    thinkingDiv.className = "msg bot-msg";
+    thinkingDiv.innerHTML = "<em>⏳ Pensando…</em>";
+    chat.appendChild(thinkingDiv);
+    chat.scrollTop = chat.scrollHeight;
+}
+
+function removeThinking() {
+    if (thinkingDiv) {
+        thinkingDiv.remove();
+        thinkingDiv = null;
+    }
+}
 
 // AÑADE MENSAJE DEL BOT (CON AUDIO BASE64)
 function addBotMessage(texto, audio_b64) {
+    removeThinking(); 
     console.log("🤖 Añadiendo mensaje del bot:", texto);
 
     const div = document.createElement("div");
+    const resultado = procesarTextoConLinks(texto);
     div.className = "msg bot-msg";
-    div.innerHTML = `<p>${texto}</p>`;
+    div.innerHTML = `
+        <p>${resultado.texto}</p>
+        <div class="botones">${resultado.botones}</div>
+    `;
 
     // Botón reproducir nuevamente
     const btn = document.createElement("button");
     btn.className = "audio-btn";
     btn.textContent = "▶️ Escuchar audio otra vez";
+
+    // Botón parar audio
+    const stopBtn = document.createElement("button");
+    stopBtn.className = "audio-btn stop-btn";
+    stopBtn.textContent = "⏹ Detener audio";
+
+    stopBtn.onclick = () => {
+        audio.pause();
+        audio.currentTime = 0;
+        stopTalking();
+    };
+
 
     // Convertir base64 → Blob (lo hacemos una sola vez)
     const byteCharacters = atob(audio_b64);
@@ -78,12 +143,14 @@ function addBotMessage(texto, audio_b64) {
 
     // Agregar elementos al chat
     div.appendChild(btn);
+    div.appendChild(stopBtn);
     chat.appendChild(div);
     chat.scrollTop = chat.scrollHeight;
 
     // 🔥 Reproducción automática apenas llega la respuesta
     reproducirAudio();
 }
+
 
 // FUNCIÓN PRINCIPAL DE ENVÍO
 async function enviar() {
@@ -107,6 +174,9 @@ async function enviar() {
         addUserMessage(q);
         input.value = "";
 
+
+        showThinking();
+
         avatar.src = "assets/smile.png";
 
         console.log("🌍 Llamando al backend...");
@@ -124,6 +194,25 @@ async function enviar() {
 
     } catch (err) {
         console.error("🔥 ERROR FATAL EN enviar():", err);
+    }
+}
+document.getElementById("preg").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        enviar();
+    }
+});
+
+// MODO OSCURO
+
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+
+    const btn = document.getElementById("toggle-theme");
+    if (document.body.classList.contains("dark")) {
+        btn.textContent = "☀️";
+    } else {
+        btn.textContent = "🌙";
     }
 }
 

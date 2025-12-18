@@ -34,3 +34,6 @@ def construir_faiss():
     faiss.write_index(index, FAISS_INDEX_PATH)
 
     print("Índice FAISS generado correctamente!")
+
+if __name__ == "__main__":
+    construir_faiss()
